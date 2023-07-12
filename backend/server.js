@@ -5,6 +5,7 @@ const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const connectDB = require("./config/db");
+const cors = require("cors");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 dotenv.config();
