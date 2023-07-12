@@ -15,13 +15,13 @@ connectDB();
 app.use(express.json()); // to accept json data
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+app.get("https://chat-a-verse-backend.onrender.com/", (req, res) => {
   res.send("API is running..");
 });
 
-app.use("/api/user", userRoutes);
-app.use("/api/chat", chatRoutes);
-app.use("/api/message", messageRoutes);
+app.use("https://chat-a-verse-backend.onrender.com/api/user", userRoutes);
+app.use("https://chat-a-verse-backend.onrender.com/api/chat", chatRoutes);
+app.use("https://chat-a-verse-backend.onrender.com/api/message", messageRoutes);
 
 // Error Handling middlewares
 app.use(notFound);
