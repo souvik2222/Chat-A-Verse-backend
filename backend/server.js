@@ -5,7 +5,7 @@ const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const connectDB = require("./config/db");
-const cors = require("cors");
+// const cors = require("cors");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 dotenv.config();
@@ -34,20 +34,22 @@ const server = app.listen(
   console.log(`Server running on PORT ${PORT}...`.yellow.bold)
 );
 
-const corsOptions = {
-  origin: "*",
-  credentials: true,
-  optionSuccessStatus: 200,
-};
+// const corsOptions = {
+//   origin: "*",
+//   credentials: true,
+//   optionSuccessStatus: 200,
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+// app.set("trust proxy", 1);
 
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
-  // cors: {
-  // origin: "http://localhost:3000",
-  // credentials: true,
-  // },
+  cors,
+  cors: {
+    origin: "*",
+    credentials: true,
+  },
 });
 
 io.on("connection", (socket) => {

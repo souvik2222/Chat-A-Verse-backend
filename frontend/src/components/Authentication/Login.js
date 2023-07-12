@@ -55,8 +55,8 @@ const Login = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      // history.push("/chats");
-      window.location.href = "/chats";
+      history.push("/chats");
+      // window.location.href = "/chats";
     } catch (error) {
       toast({
         title: "Error Occured!",
