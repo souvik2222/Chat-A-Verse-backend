@@ -10,20 +10,20 @@ const path = require("path");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 dotenv.config();
-const app = express();
 connectDB();
+const app = express();
 
 app.use(express.json()); // to accept json data
-app.use(express.urlencoded({ extended: true }));
 
 // app.get("/", (req, res) => {
-//   res.send("API is running..");
+//   res.send("API Running!");
 // });
 
 app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
-// ---------------------------------------deployment-----------------------------
+
+// --------------------------deployment------------------------------
 
 const __dirname1 = path.resolve();
 
@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// ---------------------------------------deployment-----------------------------
+// --------------------------deployment------------------------------
 
 // Error Handling middlewares
 app.use(notFound);
@@ -52,20 +52,11 @@ const server = app.listen(
   console.log(`Server running on PORT ${PORT}...`.yellow.bold)
 );
 
-// const corsOptions = {
-//   origin: "*",
-//   credentials: true,
-//   optionSuccessStatus: 200,
-// };
-
-// app.use(cors(corsOptions));
-// app.set("trust proxy", 1);
-
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "*",
-    credentials: true,
+    origin: "http://localhost:3000",
+    // credentials: true,
   },
 });
 
